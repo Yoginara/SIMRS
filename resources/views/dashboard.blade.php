@@ -21,12 +21,16 @@
                 </p>
             </div>
             <div class="flex items-center gap-2">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                <a href="{{ route('portfolio.preview') }}" target="_blank"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 hover:bg-black text-white text-xs font-semibold rounded-xl shadow-xs transition">
+                    <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>📄 Unduh Portofolio PDF</span>
+                </a>
+                <span class="hidden sm:inline-flex items-center px-3 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
                     Sistem Aktif (Live)
-                </span>
-                <span class="text-xs text-slate-400 font-mono">
-                    {{ now()->translatedFormat('l, d F Y') }}
                 </span>
             </div>
         </div>

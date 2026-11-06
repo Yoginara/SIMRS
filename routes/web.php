@@ -21,6 +21,17 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// Download & Preview Portofolio PDF
+Route::get('/portfolio/download', function () {
+    return response()->download(base_path('Portofolio_SIMRS_Medika.pdf'));
+})->name('portfolio.download');
+
+Route::get('/portfolio/preview', function () {
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('portfolio.pdf');
+    $pdf->setPaper('a4', 'portrait');
+    return $pdf->stream('Portofolio_SIMRS_Medika.pdf');
+})->name('portfolio.preview');
+
 // Guest Authentication Routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

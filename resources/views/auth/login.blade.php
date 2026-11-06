@@ -137,6 +137,17 @@
                         </button>
                     </div>
                     <p class="text-[11px] text-center text-slate-400 mt-2">Password default: <code class="text-teal-600 font-mono">password</code></p>
+
+                    <!-- Portfolio PDF Link -->
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-center">
+                        <a href="{{ route('portfolio.preview') }}" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700 hover:text-teal-900 bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-200 transition">
+                            <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>📄 Lihat / Unduh Portofolio Proyek (PDF)</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
