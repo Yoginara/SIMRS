@@ -1,0 +1,27 @@
+Act as an expert Full-Stack Software Engineer and Laravel specialist. I am building a portfolio project: a Hospital Management Information System (SIMRS - Sistem Informasi Manajemen Rumah Sakit) MVP. 
+
+Please generate a structured technical execution plan and initial code structure for the following requirements:
+
+1. TECH STACK:
+- Backend: Laravel
+- Frontend: Blade Templating + Tailwind CSS
+- Database: MySQL / PostgreSQL
+
+2. USERS & RBAC (Role-Based Access Control):
+- Admin / Front Office: Patient registration & master data management (doctors, polyclinics).
+- Doctor: Electronic Medical Record (EMR/RME), diagnosis input, and electronic prescription writing.
+- Pharmacist: Prescription validation and automated medicine stock deduction.
+- Cashier: Billing calculation, cash payment processing (calculating change), and receipt generation.
+
+3. AUTHENTICATION FEATURES:
+- Standard Email/Password login (Bcrypt).
+- Google OAuth 2.0 (Login with Google using Laravel Socialite).
+- Forgot & Reset Password (secure database token mechanism).
+
+4. CORE WORKFLOW:
+Patient Registration -> Doctor Examination & EMR -> Pharmacy Prescription & Stock Deduction -> Cashier Payment (Cash).
+
+Please provide:
+1. Recommended database schema / table migrations structure (patients, doctors, medical_records, prescriptions, medicines, transactions).
+2. Step-by-step implementation order / milestones for a solo developer.
+3. Sample Laravel migration code for the key tables to get me started.
