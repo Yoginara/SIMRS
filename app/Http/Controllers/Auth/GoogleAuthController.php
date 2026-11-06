@@ -15,6 +15,15 @@ class GoogleAuthController extends Controller
      */
     public function redirectToGoogle(): RedirectResponse
     {
+        $clientId = config('services.google.client_id');
+        $clientSecret = config('services.google.client_secret');
+
+        if (empty($clientId) || empty($clientSecret)) {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Integrasi Google OAuth memerlukan konfigurasi GOOGLE_CLIENT_ID dan GOOGLE_CLIENT_SECRET pada file .env. Saat ini silakan gunakan login Email & Password biasa atau tombol ⚡ Quick Demo Login di bawah.',
+            ]);
+        }
+
         return Socialite::driver('google')->redirect();
     }
 
