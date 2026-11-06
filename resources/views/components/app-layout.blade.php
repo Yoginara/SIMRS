@@ -48,6 +48,10 @@
                                     class="px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('registrations.*') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
                                     Pendaftaran Kunjungan
                                 </a>
+                                <a href="{{ route('admin.users.index') }}"
+                                    class="px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('admin.users.*') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                                    Kelola Staf (RBAC)
+                                </a>
                             @endif
 
                             @if(auth()->user()->hasRole('doctor'))

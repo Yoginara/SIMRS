@@ -51,6 +51,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/registrations', [RegistrationController::class, 'index'])->name('registrations.index');
         Route::get('/registrations/create', [RegistrationController::class, 'create'])->name('registrations.create');
         Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
+
+        // Manajemen Staf & Akun Pengguna (Google SSO Whitelist)
+        Route::get('/admin/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/admin/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin.users.create');
+        Route::post('/admin/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.users.store');
+        Route::post('/admin/users/{user}/toggle', [\App\Http\Controllers\Admin\UserController::class, 'toggleStatus'])->name('admin.users.toggle');
     });
 
     // 2. DOCTOR MODULE (EMR & E-Prescription)
