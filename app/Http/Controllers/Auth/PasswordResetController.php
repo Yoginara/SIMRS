@@ -34,11 +34,17 @@ class PasswordResetController extends Controller
         );
 
         if ($status === Password::RESET_LINK_SENT) {
-            return back()->with('status', __($status));
+            return back()->with('status', 'Tautan reset kata sandi telah berhasil dikirim ke alamat email Anda! Silakan periksa Kotak Masuk atau folder Spam.');
         }
 
+        $errorMessage = match ($status) {
+            Password::RESET_THROTTLED => 'Mohon tunggu 1 menit sebelum meminta tautan baru (fitur keamanan anti-spam).',
+            Password::INVALID_USER => 'Alamat email ini tidak terdaftar sebagai staf rumah sakit resmi.',
+            default => __($status),
+        };
+
         return back()->withInput($request->only('email'))
-            ->withErrors(['email' => __($status)]);
+            ->withErrors(['email' => $errorMessage]);
     }
 
     /**
@@ -74,10 +80,16 @@ class PasswordResetController extends Controller
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('status', __($status));
+            return redirect()->route('login')->with('status', 'Kata sandi akun Anda telah berhasil diperbarui! Silakan masuk dengan kata sandi baru.');
         }
 
+        $errorMessage = match ($status) {
+            Password::INVALID_TOKEN => 'Tautan reset sandi ini sudah kadaluarsa atau tidak valid. Silakan ajukan tautan baru.',
+            Password::INVALID_USER => 'Alamat email ini tidak ditemukan di sistem staf kami.',
+            default => __($status),
+        };
+
         return back()->withInput($request->only('email'))
-            ->withErrors(['email' => __($status)]);
+            ->withErrors(['email' => $errorMessage]);
     }
 }
