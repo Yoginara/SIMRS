@@ -72,14 +72,26 @@
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     @if($u->id !== auth()->id())
-                                        <form action="{{ route('admin.users.toggle', $u) }}" method="POST" class="inline">
-                                            @csrf
-                                            <button type="submit"
-                                                class="px-3 py-1.5 text-xs font-semibold rounded-lg border transition
-                                                    {{ $u->is_active ? 'border-rose-200 text-rose-600 hover:bg-rose-50' : 'border-emerald-200 text-emerald-600 hover:bg-emerald-50' }}">
-                                                {{ $u->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
-                                            </button>
-                                        </form>
+                                        <div class="inline-flex items-center gap-2">
+                                            <form action="{{ route('admin.users.toggle', $u) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="px-2.5 py-1 text-xs font-semibold rounded-lg border transition
+                                                        {{ $u->is_active ? 'border-amber-200 text-amber-700 hover:bg-amber-50' : 'border-emerald-200 text-emerald-600 hover:bg-emerald-50' }}">
+                                                    {{ $u->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                </button>
+                                            </form>
+
+                                            <form action="{{ route('admin.users.destroy', $u) }}" method="POST" class="inline"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun {{ $u->name }} ({{ $u->email }}) secara permanen?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 transition">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
                                     @else
                                         <span class="text-xs text-slate-400 italic">Akun aktif saat ini</span>
                                     @endif

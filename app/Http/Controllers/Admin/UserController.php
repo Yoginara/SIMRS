@@ -98,4 +98,23 @@ class UserController extends Controller
 
         return back()->with('status', "Akun staf {$user->name} berhasil {$statusText}.");
     }
+
+    /**
+     * Delete a staff user account.
+     */
+    public function destroy(User $user): RedirectResponse
+    {
+        if ($user->id === auth()->id()) {
+            return back()->withErrors(['status' => 'Anda tidak dapat menghapus akun yang sedang Anda gunakan saat ini.']);
+        }
+
+        $userName = $user->name;
+        $userEmail = $user->email;
+
+        // If user has doctor profile, delete it first
+        \App\Models\Doctor::where('user_id', $user->id)->delete();
+        $user->delete();
+
+        return back()->with('status', "Akun staf {$userName} ({$userEmail}) berhasil dihapus permanen dari database.");
+    }
 }
